@@ -15,7 +15,6 @@ model Criminoso {
   nome String @db.VarChar(50)
   idade Int? @db.SmallInt
   cidade String @db.VarChar(50)
-  estado String @db.VarChar(50)
   dataEntrada DateTime @default(now()) @map("data_entrada")
   genero String @db.Char(1)
   nacionalidade String @db.VarChar(50)
@@ -32,7 +31,6 @@ model Crime {
   tipoCrime String @db.VarChar(50) @map("tipo_crime")
   dataCrime DateTime @default(now()) @map("data_crime")
   boletim  Int @db.SmallInt
-  vitima String @db.VarChar(50)
   localizacao String @db.VarChar(50)
   armas Arma[]
 
@@ -45,9 +43,9 @@ model Arma {
    crime Crime @relation(fields: [idCrime], references: [id])
    modeloArma String @db.VarChar(50) @map("modelo_arma")
    qtdBalas Int @db.SmallInt @map("qtd_balas")
-   licenciada String @db.Char(1)
-   localizacao String @db.VarChar(50)
-   calibre String @db.VarChar(50)
+   licenciada String @default("S") @db.Char(1)
+   localizacao String? @db.VarChar(50)
+
 
   @@map("arma")
 
