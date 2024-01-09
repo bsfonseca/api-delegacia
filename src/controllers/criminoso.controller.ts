@@ -128,4 +128,36 @@ export class CriminosoController {
             });
         }
     }
+    public async deletarCriminoso(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const criminoso = await repository.criminoso.findUnique({
+                where: {
+                    id,
+                },
+            });
+
+            if (!criminoso) {
+                return res.status(404).send({
+                    ok: false,
+                    message: "Criminoso não encontrado",
+                });
+            }
+            await repository.criminoso.delete({
+                where: {
+                    id,
+                },
+            });
+
+            return res.status(200).send({
+                ok: true,
+                message: "Criminoso deletado com sucesso",
+            });
+        } catch (error: any) {
+            return res.status(404).send({
+                ok: false,
+                message: "Criminoso não encontrado",
+            });
+        }
+    }
 }
