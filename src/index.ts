@@ -12,6 +12,7 @@ const criminosoController = new CriminosoController();
 app.post("/criminoso", criminosoController.criarCriminoso);
 app.get("/criminoso", criminosoController.listarCriminoso);
 app.get("/criminoso/:id", criminosoController.obterCriminosoID);
+app.put("/criminoso/:id", criminosoController.atualizarCriminoso);
 
 app.listen(3335, () => {
     console.log("Api rodando");
