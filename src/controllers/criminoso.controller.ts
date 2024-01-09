@@ -33,7 +33,6 @@ export class CriminosoController {
     }
 
     //Listar um criminoso
-
     public async listarCriminoso(req: Request, res: Response) {
         try {
             const result = await repository.criminoso.findMany();
@@ -44,6 +43,37 @@ export class CriminosoController {
             });
         } catch (error: any) {
             return error.toString();
+        }
+    }
+
+    //Listar criminoso pelo ID
+
+    public async obterCriminosoID(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const criminoso = await repository.criminoso.findUnique({
+                where: {
+                    id,
+                },
+            });
+
+            if (!criminoso) {
+                return res.status(404).send({
+                    ok: false,
+                    message: "Criminoso não encontrado",
+                });
+            }
+            return res.status(200).send({
+                ok: true,
+                message: "Criminoso obtido com sucesso",
+                data: criminoso,
+            });
+        } catch (error: any) {
+            return res.status(500).send({
+                ok: false,
+                message: error.toString(),
+            });
         }
     }
 }
