@@ -31,4 +31,19 @@ export class CriminosoController {
             });
         }
     }
+
+    //Listar um criminoso
+
+    public async listarCriminoso(req: Request, res: Response) {
+        try {
+            const result = await repository.criminoso.findMany();
+            return res.status(200).send({
+                ok: true,
+                message: "Listado com sucesso",
+                data: result,
+            });
+        } catch (error: any) {
+            return error.toString();
+        }
+    }
 }
