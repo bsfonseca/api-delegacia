@@ -73,7 +73,7 @@ export class ArmaController {
 
     public async listarArma(req: Request, res: Response) {
         try {
-            const { id } = req.params;
+            const { id, idCrime } = req.params;
 
             const criminoso = await repository.criminoso.findUnique({
                 where: {
@@ -90,7 +90,7 @@ export class ArmaController {
 
             const crime = await repository.crime.findUnique({
                 where: {
-                    id,
+                    id: idCrime,
                 },
             });
             if (!crime) {
@@ -101,7 +101,7 @@ export class ArmaController {
             }
             const armas = await repository.arma.findMany({
                 where: {
-                    idCrime: id,
+                    idCrime: idCrime,
                 },
             });
             return res.status(200).send({

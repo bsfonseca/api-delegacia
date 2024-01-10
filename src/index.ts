@@ -27,7 +27,7 @@ app.get("/criminoso/:id/crime", crimeController.listarCrime);
 
 //Rotas Arma
 app.post("/criminoso/:id/crime/:idCrime/arma", armaController.criarArma);
-app.get("/ciminoso/:id/crime/:idCrime/arma", armaController.listarArma);
+app.get("/criminoso/:id/crime/:idCrime/arma", armaController.listarArma);
 
 app.listen(3335, () => {
     console.log("Api rodando");
