@@ -98,7 +98,7 @@ export class CriminosoController {
             if (!criminoso) {
                 return res.status(400).send({
                     ok: false,
-                    message: "Criminoso nã encontrado",
+                    message: "Criminoso não encontrado",
                 });
 
                 //Dados para atualizar
